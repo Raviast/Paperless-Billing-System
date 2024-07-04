@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Login page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/public/css/common.css">
+</head>
+<body>
+<%- include('partials/header',{user:userId}) -%>
+  <div class="container">
+    <div class="row">
+       <div class="col-md-6">
+         <br><br><br><br>
+           <img src="/public/images/Logo.jpg" alt="Main Logo image" class="img-thumbnail">
+       </div>
+
+       <div class="col-md-6">
+         <h2 ><center><font color="black">Welcome to Paparless Billing System<center></font></h2>
+          <br>
+          <div class="reg_form">
+          <h4><center>Root Login Form<center></h4>
+             <form action="/login"  method="post">
+                <label for="userId"><b>Company name</b></label>
+                  <input type="text" value="Root" name="userId" class="form-control" required>
+
+      <label for="pwd"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="pwd" class="form-control" required>
+       <% if(!flag) { %>
+       <div class="row text-danger">
+         <center>
+         <span>Please Enter Valid Credentials</span>
+       </center>
+     </div>
+      <% } %>
+    </br>
+      <div>
+      <center><button type="submit" class="btn btn-primary">Login</button><center>
+      </div>
+    </br>
+      </form>
+    </div>
+  </div>
+</div>
+<%- include('partials/footer.ejs') %>
+</body>
+</html>

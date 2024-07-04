@@ -1,0 +1,31 @@
+body{
+   background-color: #D9DFD9;
+}
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+.reg_form{
+  background-color: #333;
+  border-radius: 10px;
+  opacity: 0.9;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  color:white;
+}
+
+
+#ui label,h2{
+  color: #fff;
+}
+#cname1{
+ color: blue;
+}

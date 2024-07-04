@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width,initial-scal-1.0">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+     <link rel="stylesheet" type="text/css" href="/public/css/common.css">
+      <script type='text/javascript' src=''></script>
+</head>
+<body>
+  <%- include('partials/header',{user:company.company_name,flag:company.billing_flag}) -%>
+  <div class="container reg_form" id="mainform" >
+      <div>
+            <h4 class="text-center">Add users</h4>
+      </div>
+      <div>
+    <form class="form-horizontal" role="form" method="POST" action="/addUser">
+     <table class="table table-bordered" id="p_table">
+       <tr>
+          <th width="200">User Name</th>
+       </tr>
+       <tr id="row1">
+            <td><div>
+                <input class="form-control" type="text"  name="user_name" placeholder="Enter User Name"  accept="" required/ >
+            </div>
+            </td>
+       </tr>
+  </table>
+  <div>
+      <div class="col-md-offset-5 col-md-9">
+          <button  type="submit" class="btn btn-primary">Add User</button>
+      </div>
+  </div>
+  </form>
+</div>
+</div>
+</br>
+
+<div class="container reg_form">
+  <div>
+        <h4 class="text-center">User Table</h4>
+  </div>
+  <div>
+    <table class="table table-bordered" id="user_details">
+    <tr>
+       <th width="100">User Id</th>
+       <th width="100">User Name</th>
+    </tr>
+    <% for (i=0;i<users.length;i++) { %>
+      <tr>
+        <form class="form-horizontal" role="form" method="POST" action="/deleteUser" >
+         <td width="100"><%= users[i].userid%></td>
+         <td width="200"><%= users[i].uname%></td>
+         <td width="100"><button type="submit" class="btn btn-primary" name="delete" value="<%= users[i].userid %>" >Delete</button></td>
+         </form>
+      </tr>
+    <% } %>
+  </table>
+
+</div>
+</div>
+</body>
+<%- include('partials/footer.ejs') -%>
+</html>

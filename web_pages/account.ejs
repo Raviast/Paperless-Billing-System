@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/public/css/common.css">
+</head>
+
+<body>
+
+<%- include('partials/header.ejs',{user:userId}) %>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3"></div>
+      <div class="col-lg-6">
+        <div class="reg_form">
+          <h2 class="text-center">ACCOUNT DETAILS</h2>
+          <form class="form-group text-center" name="account"  method="POST" action="/account" onsubmit="return bank_nameValid()">
+
+            <label for="Bank_name_input">Bank Name</label>
+              <input type="text" placeholder="Enter Bank name" name="Bank_name_input" class="form-control" id="for_bank_nameValid">
+              <span style="color:red" id="for_bank_name_content"></span>
+              <div class="row">
+                <div class="col-lg-6">
+                  <label for="Ifsc_code_input">IFSC code</label>
+                  <input type="text" placeholder="Enter Branch's IFSC code" name="Ifsc_code_input" class="form-control color-red" id="for_ifsc_codeValid">
+                  <span style="color:red" id="for_bank_ifsc_content"></span>
+                </div>
+                <div class="col-lg-6">
+                  <label for="Branch_name_input">Branch Name</label>
+                  <input type="text" placeholder="Enter Branch name" name="Branch_name_input" class="form-control" id="for_branch_nameValid">
+                  <span style="color:red" id="for_bank_branch_content"></span>
+                </div>
+              </div>
+
+              <div class="row">
+            <label for="Accholder_name_input">Account Holder's Name</label>
+            <input type="text" placeholder="Enter Account holder's name" name="Accholder_name_input" class="form-control" id="for_holder_nameValid">
+            <span style="color:red" id="for_holder_name_content"></span>
+
+            <label for="Account_number_input">Bank Account Number</label>
+            <input type="number" placeholder="Enter Account number" name="Account_number_input" class="form-control" id="for_account_numberValid">
+            <span style="color:red" id="for_account_number_content"></span>
+
+            <label for="Confirm_acc_number_input">Confirm Bank Account Number</label>
+            <input type="password" placeholder="Re-enter Account number" name="Confirm_acc_number_input" class="form-control" id="for_confirm_accountValid">
+            <span style="color:red" id="for_confirm_account_content"></span>
+
+            <br>
+            <input type="submit" name="submit" value="Submit Now" class="btn btn-primary btn-block btn-lg">
+            <div class="row d-flex justify-content-center">
+                <span style="color: #f1f1f1"> _OR_ Skip to <a href="/login">Login Page</a></span>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-3"></div>
+
+    </div>
+  </div>
+<script type="text/javascript">
+function account_numberValid()
+{
+  var account_number_input=document.forms["account"]["for_account_numberValid"].value;
+  var confirm_account_input=document.forms["account"]["for_confirm_accountValid"].value;
+  var account_number_expression = /^([0-9]){8,16}?$/;
+  if(account_number_input=='')
+  {
+    document.getElementById("for_account_number_content").innerHTML="Account number field is blank";
+    return false;
+  }
+  if(!account_number_expression.test(account_number_input))
+  {
+    document.getElementById("for_account_number_content").innerHTML="Account should be a numeric number or Invalid account number";
+    return false;
+  }
+  if(account_number_input!=confirm_account_input)
+  {
+    document.getElementById("for_confirm_account_content").innerHTML="Account fiels do not match";
+    return false;
+  }
+  alert("Registration succesfull");
+}
+function holder_nameValid()
+{
+  var accholder_name_input=document.forms["account"]["for_holder_nameValid"].value;
+  var holder_name_expression = /^([a-zA-Z. ])+$/;
+  if(accholder_name_input=='')
+  {
+    document.getElementById("for_holder_name_content").innerHTML="Bank holder name field is blank";
+    return false;
+  }
+  if(!holder_name_expression.test(accholder_name_input))
+  {
+    document.getElementById("for_holder_name_content").innerHTML="Only alphabetic characters and . and ''allowed";
+    return false;
+  }
+  return account_numberValid();
+}
+function account_typeValid()
+{
+  var account_type_input=document.forms["account"]["for_account_typeValid"].value;
+  if(account_type_input=='-1')
+  {
+    document.getElementById("for_account_type_content").innerHTML="Please Select Account Type";
+    return false;
+  }
+  return holder_nameValid();
+}
+function ifsc_codevalid()
+{
+  var ifsc_code_input=document.forms["account"]["for_ifsc_codeValid"].value;
+  var ifsc_code_expression = /^([a-zA-Z]){4}([0-9]){7}?$/;
+  if(ifsc_code_input=='')
+  {
+    document.getElementById("for_bank_ifsc_content").innerHTML="IFSC code is blank";
+    return false;
+  }
+  if(!ifsc_code_expression.test(ifsc_code_input))
+  {
+    document.getElementById("for_bank_ifsc_content").innerHTML="It should be 'AAAA1111111'";
+    return false;
+  }
+  return account_typeValid();
+}
+function branch_nameValid()
+{
+  var branch_name_input=document.forms["account"]["for_branch_nameValid"].value;
+  var branch_name_expression = /^([a-zA-Z0-9,.-])+$/;
+  if(branch_name_input=='')
+  {
+    document.getElementById("for_bank_branch_content").innerHTML="Bank branch name field is blank";
+    return false;
+  }
+  if(!branch_name_expression.test(branch_name_input))
+  {
+    document.getElementById("for_bank_branch_content").innerHTML="Invalid Branch Name";
+    return false;
+  }
+  return ifsc_codevalid();
+}
+function bank_cityValid()
+{
+  var bank_city_input=document.forms["account"]["for_bank_cityValid"].value;
+  var bank_city_expression = /^([a-zA-Z])+$/;
+  if(bank_city_input=='')
+  {
+    document.getElementById("for_bank_city_content").innerHTML="Bank city field is blank";
+    return false;
+  }
+  if(!bank_city_expression.test(bank_city_input))
+  {
+    document.getElementById("for_bank_city_content").innerHTML="Invalid city name Or Could not find any branch";
+    return false;
+  }
+  return branch_nameValid();
+}
+function bank_nameValid()
+{
+  var bank_name_input=document.forms["account"]["for_bank_nameValid"].value;
+  var bank_name_expression = /^([a-zA-Z])+$/;
+  if(bank_name_input=='')
+  {
+    document.getElementById("for_bank_name_content").innerHTML="Bank name field blank";
+    return false;
+  }
+  if(!bank_name_expression.test(bank_name_input))
+  {
+    document.getElementById("for_bank_name_content").innerHTML="Invalid or Unsupported Bank Name";
+    return false;
+  }
+  return bank_cityValid();
+}
+function password_Valid()
+{
+  var pass_word_input=document.forms["signup"]["for_password_Valid"].value;
+  var confirm_password_input=document.forms["signup"]["for_confirm_passwordValid"].value;
+  var pwd_expression = /^([a-zA-Z0-9#?!@$%^&*-]){8,12}?$/;
+  if(pass_word_input=='')
+  {
+  document.getElementById("for_password_content").innerHTML="Please enter password";
+  return false;
+  }
+  if(!pwd_expression.test(pass_word_input))
+  {
+    document.getElementById("for_password_content").innerHTML="weak password";
+    return false;
+  }
+  if(confirm_password_input=='')
+  {
+  document.getElementById("for_confirm_password").innerHTML="Please re-enter password";
+  return false;
+  }
+  if(pass_word_input!=confirm_password_input)
+  {
+  document.getElementById("for_confirm_password").innerHTML="password not match";
+  return false;
+  }
+
+  alert("Registration succesfull");
+}
+function add_city_Valid()
+{
+  //add_city_valid means city name is validated, so that is not contain numeric value
+  var add_city_input=document.forms["signup"]["for_add_city_Valid"].value;
+  var city_expression = /^([a-zA-Z])+$/;
+  if(add_city_input=='')
+  {
+    document.getElementById("for_add_city_content").innerHTML="Plese enter city name";
+    return false;
+  }
+  if(!city_expression.test(add_city_input))
+  {
+    document.getElementById("for_add_city_content").innerHTML="Plese enter Valid City Name";
+    return false;
+  }
+  return password_Valid();
+}
+
+</script>
+<%- include('partials/footer.ejs') %>
+</body>
+</html>

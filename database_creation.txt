@@ -1,0 +1,25 @@
+
+create database billing_system;
+
+use billing_system;
+
+
+create table company (company_id varchar(21) primary key,pwd varchar(10) not null,company_name varchar(60) not null unique,address varchar(100) not null,
+email varchar(25) not null,contact_no bigint(10) not null,gstin varchar(15) not null,city varchar(30) not null,pincode varchar(6) not null,registration_date Date not null,account_no bigint not null,bank_name varchar(30) not null,ifse_code varchar(20) not null,branch varchar(30) not null,account_holder_name varchar(30) not null, private_key varchar(150) not null,public_key varchar(150) not null ,mod_n varchar(150) not null);
+
+
+create table product_category (category_id int(10) primary key auto_increment, category varchar(30) unique not null);
+
+
+
+create table products(barcode_id varchar(50) primary key,product_desc varchar(30) not null,quantity int not null default 0,unit_price float(10,2) not null default 0.00,hsn_code int not null,product_category int references product_category(category_id),cgst float(10,2) not null default 0.0,sgst float(10,2) not null default 0.0);
+
+
+create table customers(customer_id bigint primary key not null auto_increment,customer_name varchar(30) not null,contact bigint(10) not null default 1234567890,email varchar(25) not null,gstin varchar(21) );
+
+create table payment_modes(mod_id int primary key,mod_desc varchar(20));
+
+
+create table invoice(bill_no bigint primary key auto_increment,bill_date_time datetime not null, customer_id bigint references customers(customer_id),total_amount float(10,2) not null default 0.00,payment_mode int references payment_modes(mod_id),payment_status bool not null default false,transaction_id varchar(30) not null);
+
+create table ordered_products(bill_no bigint references invoice(bill_no),barcode_id varchar(50) references products(barcode_id),quantity int not null);

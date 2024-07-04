@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width,initial-scal-1.0">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+     <link rel="stylesheet" type="text/css" href="/public/css/common.css">
+      <script type='text/javascript' src='/public/js/search.js'></script>
+</head>
+<body>
+  <%- include('partials/header',{user:company.company_name,flag:company.billing_flag}) -%>
+  <div class="container reg_form" id="mainform" >
+      <div>
+            <h4 class="text-center">Add products</h4>
+      </div>
+      <div>
+    <form class="form-horizontal" role="form" method="POST" action="/addProduct">
+     <table class="table table-bordered" id="p_table">
+       <tr>
+          <th width="100">Barcode Id</th>
+          <th width="150">Descriptions</th>
+          <th width="80">Quantity</th>
+          <th width="80">Unit Price</th>
+          <th width="100">Product Category</th>
+          <th width="50">HSN Code</th>
+          <th width="30">GST</th>
+       </tr>
+       <tr id="row1">
+            <td><div>
+                <input class="form-control" type="text"  id='bid' name="bid" placeholder="Enter Barcode"  accept="" required/ >
+            </div>
+          </td>
+            <td width="200">  <div>
+                  <input class="form-control" type="text" name="pds" placeholder="Descriptions"  accept="" required/ >
+              </div>
+            </td>
+            <td><div>
+                <input class="form-control" type="number" name="qn" placeholder="Enter Qty"  accept="" required/ >
+            </div>
+          </td>
+            <td> <div >
+                 <input class="form-control" type="Numeric" name="up" placeholder="0.0"  accept="" required/ >
+             </div>
+           </td>
+            <td>
+              <font color="black">
+             <select class="mdb-select form-control" name='ct' >
+                <option value="0">Category</option>
+                <option value="6">Furniture </option>
+                <option value="5">Food</option>
+                <option value="3">Electronics</option>
+                <option value="1">Clothing</option>
+                <option value="4">Fashion</option>
+                <option value="2">Daily Use</option>
+                <option value="7">Daily Use</option>
+
+             </select>
+           </font>
+         </td>
+            <td>
+              <div>
+                 <input class="form-control" type="Numeric" name="hc" placeholder="HSN"  accept="" required/ >
+             </div>
+           </td>
+            <td>
+              <div>
+                 <input class="form-control" type="float" name="gst" placeholder="0.0"  accept="" required/ >
+             </div>
+           </td>
+       </tr>
+  </table>
+  <div>
+      <div class="col-md-offset-5 col-md-9">
+          <button  type="submit" class="btn btn-primary">Add Item</button>
+      </div>
+  </div>
+  </form>
+</div>
+</div>
+</br>
+
+
+<div class="container reg_form">
+  <div>
+        <h4 class="text-center">Other Operations</h4>
+  </div>
+ <table class="table table-bordered">
+   <tr>
+      <td>
+        <input type="text" id='search_text' class="form-control" placeholder="Enter Name or Barcode" required>
+      </td>
+      <td>
+        <div>
+          <button  type="submit"  id='search' class="btn btn-primary">Search Product</button>
+      </div>
+    </td>
+      <td>
+        <div>
+          <button  type="submit" id="all_search" class="btn btn-primary">Show All Products</button>
+       </div>
+     </td>
+   </tr>
+ </table>
+  </div>
+</br>
+
+<div class="container reg_form">
+  <div>
+        <h4 class="text-center">Product Table</h4>
+  </div>
+  <div>
+  <table class="table table-bordered" id="product_details">
+    <tr>
+       <th width="100">Barcode Id</th>
+       <th width="150">Descriptions</th>
+       <th width="80">Quantity</th>
+       <th width="80">Unit Price</th>
+       <th width="80">Product Category</th>
+       <th width="50">GST</th>
+    </tr>
+  </table>
+</div>
+</div>
+</div>
+</body>
+<%- include('partials/footer.ejs') -%>
+</html>

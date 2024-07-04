@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/public/css/common.css">
+  <script type='text/javascript' src='/public/js/keySearch.js'></script>
+
+</head>
+
+<body>
+
+  <%- include('partials/header',{user:userId}) -%>
+  <div class="container reg_form">
+    <div>
+          <h4 class="text-center">Search Keys</h4>
+    </div>
+   <table class="table table-bordered">
+     <tr>
+        <td>
+          <input type="text" id='num_keys' class="form-control" placeholder="Enter Number Of keys" required>
+        </td>
+        <td>
+          <div>
+            <button  type="submit"  id='generate' class="btn btn-primary">Generate Keys</button>
+        </div>
+      </td>
+        <td>
+          <div>
+            <button  type="submit" id="searchKeys" class="btn btn-primary">Show Keys Details</button>
+         </div>
+       </td>
+     </tr>
+   </table>
+    </div>
+  </br>
+
+  <div class="container reg_form">
+    <div>
+          <h4 class="text-center">Keys Table</h4>
+    </div>
+    <div>
+    <table class="table table-bordered" id="keys_details">
+      <tr>
+         <th width="100">Total Keys</th>
+         <th width="100">Used Keys</th>
+         <th width="100">Unused Keys</th>
+      </tr>
+    </table>
+  </div>
+  </div>
+  <%- include('partials/footer.ejs') -%>
+  </body>
+
+<html>

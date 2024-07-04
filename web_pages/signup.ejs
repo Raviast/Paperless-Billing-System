@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/public/css/common.css">
+
+</head>
+
+<body>
+<%- include('partials/header.ejs',{user:userId}) %>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-offset-2 col-lg-8">
+        <div class="reg_form">
+
+          <h2 class="text-center">REGISTRATION FORM</h2>
+          <form class="form-group text-center" name="signup" method="POST" action='/signup' onsubmit="return user_nameValid()">
+            <div class="row">
+              <div class="col-lg-6">
+            <label for="Company_name_input">Company name</label>
+              <input type="text" placeholder="Enter Company name" name="Company_name_input" class="form-control" id="for_user_nameValid">
+              <span style="color:red" id="for_user_content"></span>
+            </div>
+            <div class="col-lg-6">
+              <label for="service_select_input">select service</label>
+              <font color='black'>
+              <select name="service_select_input" id="service_select_input">
+                <option value="Billing_system with Digital Singature" selected>Billing_system with Digital Singature</option>
+                <option value="Digital Singature">Digital Singature</option>
+              </select>
+            </font>
+          </div>
+
+</div>
+<div class="row">
+  <div class="col-lg-6">
+                  <label for="Gst_number_input">GST Number</label>
+                  <input type="text" placeholder="Enter GST number" name="Gst_number_input" class="form-control color-red" id="for_gst_numberValid">
+                  <span style="color:red" id="for_gst_content"></span>
+                </div>
+                <div class="col-lg-6">
+                  <label for="CIN_number_input">CIN Number</label>
+                  <input type="text" placeholder="Enter CIN number" name="CIN_number_input" class="form-control" id="for_cin_numberValid">
+                  <span style="color:red" id="for_cin_content"></span>
+              </div>
+            </div>
+
+            <label for="Email_id_input">E-mail Address</label>
+            <input type="text" placeholder="Enter Email id" name="Email_id_input" class="form-control" id="for_email_idValid">
+            <span style="color:red" id="for_email_content"></span>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <label for="Contact_number_input">Contact Number</label>
+                <input type="number" placeholder="Enter contact number" name="Contact_number_input" class="form-control" id="for_contact_numValid">
+                <span style="color:red" id="for_contact_content"></span>
+              </div>
+              <div class="col-lg-6">
+                <label for="Pin_code_input">Pin Code</label>
+                <input type="number" placeholder="Enter Pincode" name="Pin_code_input" class="form-control" id="for_pin_codeValid">
+                <span style="color:red" id="for_pincode_content"></span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <label for="User_address_input">Address</label>
+                <input type="text" placeholder="Flat/House No./Floor/Building" name="User_address_input" class="form-control" id="for_add_house_numValid">
+                <span style="color:red" id="for_add_house_content"></span>
+              </div>
+              <div class="col-lg-6">
+                <label for="User_address_input">Colony</label>
+                <input type="text" placeholder="Colony/Street/Locality" name="User_address_input" class="form-control" id="for_add_colony_Valid">
+                <span style="color:red" id="for_add_colony_content"></span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <label for="User_address_input">City Name</label>
+                <input type="text" placeholder="Enter City Name" name="User_address_input" class="form-control" id="for_add_city_Valid">
+                <span style="color:red" id="for_add_city_content"></span>
+              </div>
+              <div class="col-lg-6">
+                <label for="User_address_input">Landmark</label>
+                <input type="text" placeholder="Landmark(Optional)" name="User_address_input" class="form-control">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <label for="User_password_input">Password</label>
+                <input type="password" placeholder="Enter Password" name="User_password_input" class="form-control" id="for_password_Valid">
+                <span style="color:red" id="for_password_content"></span>
+              </div>
+              <div class="col-lg-6">
+                <label for="Confirm_password_input">Confirm Password</label>
+                <input type="password" placeholder="Re-type password" name="Confirm_password_input" class="form-control" id="for_confirm_passwordValid">
+                <span style="color:red" id="for_confirm_password"></span>
+              </div>
+            </div>
+            <br>
+            <input type="submit" name="submit" value="Submit Now" class="btn btn-primary btn-block btn-lg">
+            <div class="row d-flex justify-content-center">
+              <span style="color: #f1f1f1">Already a member <a href="/login">Login Now </a></span>
+              <span style="color: #f1f1f1"> _OR_ skip to <a href="/account">Account Details</a></span>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-3"></div>
+
+    </div>
+  </div>
+
+<script type="text/javascript">
+function password_Valid()
+{
+  var pass_word_input=document.forms["signup"]["for_password_Valid"].value;
+  var confirm_password_input=document.forms["signup"]["for_confirm_passwordValid"].value;
+  var pwd_expression = /^([a-zA-Z0-9#?!@$%^&*-]){8,12}?$/;
+  if(pass_word_input=='')
+  {
+  document.getElementById("for_password_content").innerHTML="Please enter password";
+  return false;
+  }
+  if(!pwd_expression.test(pass_word_input))
+  {
+    document.getElementById("for_password_content").innerHTML="weak password";
+    return false;
+  }
+  if(confirm_password_input=='')
+  {
+  document.getElementById("for_confirm_password").innerHTML="Please re-enter password";
+  return false;
+  }
+  if(pass_word_input!=confirm_password_input)
+  {
+  document.getElementById("for_confirm_password").innerHTML="password not match";
+  return false;
+  }
+}
+function add_city_Valid()
+{
+  //add_city_valid means city name is validated, so that is not contain numeric value
+  var add_city_input=document.forms["signup"]["for_add_city_Valid"].value;
+  var city_expression = /^([a-zA-Z])+$/;
+  if(add_city_input=='')
+  {
+    document.getElementById("for_add_city_content").innerHTML="Plese enter city name";
+    return false;
+  }
+  if(!city_expression.test(add_city_input))
+  {
+    document.getElementById("for_add_city_content").innerHTML="Plese enter Valid City Name";
+    return false;
+  }
+  return password_Valid();
+}
+function add_colony_Valid()
+{
+  var add_colony_input=document.forms["signup"]["for_add_colony_Valid"].value;
+  var colony_expression = /^([a-zA-Z0-9,-])+$/;
+
+  if(add_colony_input=='')
+  {
+    document.getElementById("for_add_colony_content").innerHTML="colony/street/Locality name field is blank";
+    return false;
+  }
+  if(!colony_expression.test(add_colony_input))
+  {
+    document.getElementById("for_add_colony_content").innerHTML="Please enter colony/street/Locality name";
+    return false;
+  }
+  return add_city_Valid();
+}
+function add_house_numValid()
+{
+  var add_house_input=document.forms["signup"]["for_add_house_numValid"].value;
+  //add_house_input= address of house number input validation
+  if(add_house_input=='')
+  {
+    document.getElementById("for_add_house_content").innerHTML="Plese enter House_no field";
+    return false;
+  }
+  return add_colony_Valid();
+}
+function pin_codeValid()
+{
+  var pin_code_input=document.forms["signup"]["for_pin_codeValid"].value;
+  var pin_expression = /^([0-9]){6}?$/;
+
+  if(pin_code_input=='')
+  {
+    document.getElementById("for_pincode_content").innerHTML="Plese enter pincode";
+    return false;
+  }
+  if(!pin_expression.test(pin_code_input))
+  {
+    document.getElementById("for_pincode_content").innerHTML="Pin code should be in 6 digits";
+    return false;
+  }
+  return add_house_numValid();
+}
+function contact_numberValid()
+{
+  var contact_number_input=document.forms["signup"]["for_contact_numValid"].value;
+  if(contact_number_input=='')
+  {
+    document.getElementById("for_contact_content").innerHTML="Contact number field is blank";
+    return false;
+  }
+  if(isNaN(contact_number_input))
+  {
+  document.getElementById("for_contact_content").innerHTML="Invalid mobile number";
+  return false;
+  }
+  if(contact_number_input.length!=10)
+  {
+  document.getElementById("for_contact_content").innerHTML="Invalid mobile number";
+  return false;
+  }
+  return pin_codeValid();
+}
+function email_idValid()
+{
+  var email_id_input=document.forms["signup"]["for_email_idValid"].value;
+  var email_expression = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+           //var address = document.getElementById[email].value;
+  if(email_id_input=='')
+  {
+    document.getElementById("for_email_content").innerHTML="Email-ID field is blank";
+    return false;
+  }
+  if (email_expression.test(email_id_input) == false)
+  {
+    document.getElementById("for_email_content").innerHTML="Invalid Email Address";
+    return (false);
+  }
+  return contact_numberValid();
+}
+function cin_numberValid()
+{
+  var cin_number_input=document.forms["signup"]["for_cin_numberValid"].value;
+  var cin_expression = /^([a-zA-Z]){1}([0-9]){5}([a-zA-Z]){2}([0-9]){4}([a-zA-Z]){3}([0-9]){6}?$/;
+  if(cin_number_input=='')
+  {
+  document.getElementById("for_cin_content").innerHTML="Please enter CIN number";
+  return false;
+  }
+  if(!cin_expression.test(cin_number_input))
+  {
+  document.getElementById("for_cin_content").innerHTML="It should be in this 'A11111AA1111AAA111111' format";
+  return false;
+  }
+  return email_idValid();
+}
+
+function gst_numberValid()
+{
+  var gst_number_input=document.forms["signup"]["for_gst_numberValid"].value;
+  var reg_exp_for_gst = /^([0-9]){2}([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}([0-9]){1}([a-zA-Z]){1}([0-9]){1}?$/;
+  if(!reg_exp_for_gst.test(gst_number_input))
+  {
+  document.getElementById("for_gst_content").innerHTML="It should be in this '11AAAAA1111Z1A1' format.";
+  return false;
+  }
+  if(gst_number_input='')
+  {
+  document.getElementById("for_gst_content").innerHTML="Please enter GST number";
+  return false;
+  }
+
+    return cin_numberValid();
+}
+function user_nameValid()
+{
+  var user_name_input=document.forms["signup"]["for_user_nameValid"].value;
+  if(user_name_input.length > 30)
+ 	{
+  document.getElementById("for_user_content").innerHTML= "length should in limit";
+ 	return false;
+  }
+  if(user_name_input=='')
+  {
+  document.getElementById("for_user_content").innerHTML= "User field blank";
+  return false;
+  }
+ 	if(!isNaN(user_name_input))
+ 	{
+  document.getElementById("for_user_content").innerHTML= "username does not contain number";
+ 	return false;
+ 	}
+  return gst_numberValid();
+}
+</script>
+<%- include('partials/footer.ejs') %>
+</body>
+</html>

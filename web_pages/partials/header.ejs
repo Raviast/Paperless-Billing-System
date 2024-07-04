@@ -1,0 +1,45 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+
+    <% if (!user) { %>
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Billing System</a>
+      </div>
+      <ul class="nav navbar-nav navbar-left">
+        <li ><a href="/verify"> <span class="	glyphicon glyphicon-check"></span> Verify Bill </a></li>
+      </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li><a href="/about"><span class="glyphicon glyphicon-edit"></span> About</a></li>
+    </ul>
+    <% } else { %>
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#"><%= user %></a>
+      </div>
+      <ul class="nav navbar-nav navbar-left">
+        <% if (flag==1) { %>
+        <li ><a href="/home"> <span class="	glyphicon glyphicon-list-alt"></span> Prepare Bill</a></li>
+        <li ><a href="/rootLogin"> <span class="glyphicon glyphicon-user"></span> Root Management</a></li>
+          <% } %>
+          <% if (flag==2) { %>
+          <li ><a href="/home"> <span class="	glyphicon glyphicon-list-alt"></span> Prepare Bill</a></li>
+          <li ><a href="/report"> <span class="glyphicon glyphicon-eye-open"></span> View Reports</a></li>
+          <li ><a href="/inventory"> <span class="	glyphicon glyphicon-cog"></span> Inventory Management</a></li>
+          <li ><a href="/usermanagement"> <span class="	glyphicon glyphicon-user"></span> User Management</a></li>
+            <% } %>
+        <li ><a href="/signInvoice"> <span class="glyphicon glyphicon-check"></span> Sign Bill </a></li>
+        <li ><a href="/verify"> <span class="glyphicon glyphicon-check"></span> Verify Bill </a></li>
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if (flag==2) {%>
+        <li><a href="/rootLogout"><span class="glyphicon glyphicon-log-in"></span>Root Logout</a></li>
+        <% } else {%>
+          <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        <% } %>
+        <li><a href="/about"><span class="glyphicon glyphicon-edit"></span> About</a></li>
+      </ul>
+      <% } %>
+  </div>
+</nav>

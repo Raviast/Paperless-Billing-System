@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width,initial-scal-1.0">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+     <link rel="stylesheet" type="text/css" href="/public/css/common.css">
+</head>
+<body>
+  <%- include('partials/header',{user:company.company_name,flag:company.billing_flag}) -%>
+  <div class="container col-sm-6 col-sm-push-3" id="mainform" style="margin-top:50px">
+   <table class="table table-bordered reg_form">
+      <tr><td colspan="2">
+     <div>
+           <h2 class="text-center">Sign and Email Receipt</h2>
+     </div>
+   </td>
+     </tr>
+    <div class="">
+          <div class="text-center" >
+                <form class="form-horizontal" role="form" method="POST" action="/signAndmail" enctype="multipart/form-data">
+                  <tr>
+                  <div class="form-group">
+                    <th> <label class="control-label">Company Name</label>
+                    </th><div class="">
+                    <th> <input type='text' class="form-control" name='company_name' value= <%= company.company_name %> readonly>
+                    </th></div>
+                  </div>
+                </tr>
+                <tr>
+                <div class="form-group">
+                  <th> <label class="control-label">Company CIN</label>
+                  </th><div class="">
+                  <th> <input type='text' class="form-control" name='company_cin' value= <%= company.company_id %> readonly>
+                  </th></div>
+                </div>
+              </tr>
+                <tr>
+                <div class="form-group">
+                  <th>
+                <label for="image" class="control-label">Receipt PDF File</label>
+              </th>
+              <th>
+                 <div>
+                <input class="form-control" type="file" id="file" name="filename" accept="" required/>
+                  </div>
+                </th>
+                  </div>
+                  </tr>
+                  <tr>
+                    <div class="form-group">
+                      <th> <label class="control-label">Bill No</label>
+                      </th><div class="">
+                        <th> <input type='text' class="form-control" name='bill_no' required>
+                       </th></div>
+                    </div>
+                  </tr>
+                  <tr>
+                    <div class="form-group">
+                      <th>   <label class="control-label">Customer Email</label>
+                      </th>
+                      <th>  <input type='text' class="form-control" name="customer_email" required>
+                         </th>
+                     </div>
+                   </tr>
+                   <td colspan="2">
+                    <div class="form-group">
+                        <!-- Button -->
+                        <div class="col-md-offset-4 col-md-5">
+                            <button type="submit" class="btn btn-primary">Sign and Email Receipt</button>
+                        </div>
+                    </div>
+                  </td>
+                </form>
+             </div>
+        </div>
+    </div>
+  </table>
+</div>
+</body>
+<script>
+if (<%= f %> ==1){
+  window.alert("CIN Not Matching or Found")
+}
+</script>
+<%- include('partials/footer.ejs') -%>
+</html>

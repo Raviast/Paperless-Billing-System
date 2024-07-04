@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width,initial-scal-1.0">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+     <link rel="stylesheet" type="text/css" href="/public/css/common.css">
+     <script type='text/javascript' src='/public/js/report.js'></script>
+</head>
+<body>
+  <%- include('partials/header',{user:company.company_name,flag:company.billing_flag}) -%>
+  <div class="container" id="mainform" style="margin-top:30px;margin-left:10%">
+    <div class="reg_form">
+      <div>
+            <h4 class="text-center">Reports</h4>
+      </div>
+      <div>
+    <form class="form-horizontal">
+      <table style="border-collapse: separate;border-spacing:10px;">
+        <tr>
+           <th>From </th>
+           <th>To</th>
+        </tr>
+        <tr>
+        <td>
+          <tr>
+           <td><div>
+               <input class="form-control" type="date" id='std' name="std" accept="" required/ >
+           </div></td>
+           <td><div>
+               <input class="form-control" type="date" id='end' name="end"   accept="" required/ >
+           </div></td>
+            <td>
+  <div>
+      <div class="col-md-offset-5 col-md-9">
+          <button id="search" class="btn btn-primary">Search</button>
+      </div>
+    </td>
+  </tr>
+</table>
+  </div>
+</form>
+</div>
+</div>
+</div>
+</br>
+<div class="reg_form">
+  <h4><center>Bill Details</center></h4>
+<table class="table table-bordered"  id='bill_details'>
+<tr>
+<th width="50">Bill Number</th>
+<th width="80">Date</th>
+<th width="80">Time</th>
+<th width="80">Customer</th>
+<th width="50">Total Amount</th>
+<th width="50">Payment Mode</th>
+<th width="80">Payment Status</th>
+<th width="50">Transaction Id</th>
+<th width="50">user name</th>
+</tr>
+</div>
+</body>
+<%- include('partials/footer.ejs') -%>
+</html>
