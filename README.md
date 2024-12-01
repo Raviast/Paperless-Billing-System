@@ -1,5 +1,6 @@
 # Paperless Billing System
 
+![alt text](https://github.com/Raviast/Paperless-Billing-System/blob/main/public/images/Logo.jpg?raw=true)
 
 The project aim is to reduce the use of 
 paper and prepare a digital bill receipt using barcode scanner, for a merchant and after proving digital 
