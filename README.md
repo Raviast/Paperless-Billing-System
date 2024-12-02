@@ -11,6 +11,7 @@ signature, send it to the customer via a mail.
 - [Overview](#overview)
 - [Features](#features)
 - [Technology Stack](#technology-stack)
+- [Project Screenshots](#project-screenshots)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -58,6 +59,30 @@ customers after verification
 - Authentication: 
   - SHA-256 hashing algorithm and 
   - RSA digital signatures
+
+
+## Project Screenshots:
+
+<img src="https://res.cloudinary.com/do9zaevax/image/upload/Paperless_billing_system/gpaijdzaveo4e6u0pzss" alt="project-screenshot">
+
+<img src="https://res.cloudinary.com/do9zaevax/image/upload/Paperless_billing_system/ehmby6hrtdgeguncglwy" alt="project-screenshot">
+
+![alt text](https://github.com/Raviast/Paperless-Billing-System/blob/main/public/images/prepare_bill.png?raw=true)
+
+![alt text](https://github.com/Raviast/Paperless-Billing-System/blob/main/public/images/Payment.png?raw=true)
+
+![alt text](https://github.com/Raviast/Paperless-Billing-System/blob/main/public/images/Receipt.png?raw=true)
+
+![alt text](https://github.com/Raviast/Paperless-Billing-System/blob/main/public/images/Email_receipt.png?raw=true)
+
+![alt text](https://github.com/Raviast/Paperless-Billing-System/blob/main/public/images/verify_bill.png?raw=true)
+
+
+![alt text](https://github.com/Raviast/Paperless-Billing-System/blob/main/public/images/Reports.png?raw=true)
+
+
+![alt text](https://github.com/Raviast/Paperless-Billing-System/blob/main/public/images/Add_products.png?raw=true)
+
 
 ## Prerequisites
  - ### Hardware
